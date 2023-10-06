@@ -1,0 +1,192 @@
+{% extends "template.html" %}
+
+{% block title %} Home {% endblock %}
+
+{% block main %} 
+
+{% if is_okn_page %}
+  <style>
+    .home-content{display: none;}
+    .aboutpage{display: none;}
+    .okn-page{display: block;}
+  </style>
+{% endif %}
+
+<!-- home page -->
+<div class="container home-content">
+  <div class="wrapper">
+    <div class="row">
+      <div class="col">
+        <img class="home_img" src="{{ url_for('static', filename='img/img_eye.jpg') }}" alt="">
+      </div>
+      <div class="col">  
+        <div class="row">
+          <figure class="text-end">
+            <blockquote class="blockquote">
+              <p>When our eyes observe movement, they create a unique pattern of slow and fast phases 
+                at either end of the stimulus. The tricky part is that this pattern can happen in less than 
+                a second, making it difficult to spot. To accurately predict this pattern, each video frame must  
+                be carefully analyzed. Our application can then determine whether or not a video clip contains an OKN 
+                pattern.</p>
+            </blockquote>
+          </figure>
+        </div>   
+        <form action="#" method="get"></form>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end pe-5">
+            <a onclick="showOknPage()" class="nav-link" href="#okn">        
+              <button type="button" class="btn btn-secondary btn-lg">Try it out!</button>
+            </a>          
+          </div>           
+      </div>
+    </div>
+  </div>   
+</div>
+
+<!-- okn page -->
+<div class="okn-page">
+  <!-- okn test result -->
+  <div class="container" id="testResult">
+    <table class="table table-sm table-dark okn_result">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Video Name</th>
+          <th scope="col">Accuracy</th>
+          <th scope="col">Label</th>
+          <th scope="col">Start time</th>
+          <th scope="col">End time</th>
+          <th scope="col">Boolean</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for result in results %}
+          <tr>
+            <th scope="row">{{loop.index}}</th>
+            <td>{{result.get('Video_Name')}}</td>
+            <td>{{result.get('score')}}</td>
+            <td>{{result.get('label')}}</td>
+            <td>{{result.get('Start time')}}</td>  
+            <td>{{result.get('End time')}}</td>
+            <td>{{result.get('Result')}}</td>           
+        {% endfor %}  
+      </tbody>     
+    </table>
+    {% if filename=='' %}
+      <style>#download_csv{display: none;}</style>
+    {% elif filename!='' %}
+      <style>#download_csv{display: block;}</style>
+    {% endif %}    
+    <a href="/get-csv/{{filename}}" target="blank"><button id="download_csv" class="btn btn-primary">Download csv</button></a>
+    
+  </div>
+  <!-- uploading videos -->
+  <div class="uploadVideo container">
+    <div class="row">
+      <div class="col">
+        <h1>Upload Video</h1>
+        <hr>
+        <form action="/" method="POST" enctype="multipart/form-data">
+          <div class="form-group">
+            <div class="custom-file">
+              <input oninput="filesize(this);" type="file" class="form-control" name="video" id="video">
+              <label class="custom-file-label" for="video">Select video...</label>
+            </div>
+          </div>
+          <button onclick="hideUploadPage()" show="submit" id="oknBtn" class="btn btn-primary">Run OKN Detection</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- loading screen -->  
+  <div class="container videoBg">
+    <div class="row">
+      <video class="vidplayer" width="520" height="440" autoplay loop muted>
+        <source src="{{ url_for('static', filename='img/loading_screen.mp4') }}" type="video/mp4"></source>    
+      </video>
+    </div>
+    <div class="row">
+      <h5 class="text-center loadingmsg">The video is being processed <br>
+      this may take awhile</h5></div>
+  </div>
+</div>
+
+<!-- about page -->
+<div class="container aboutpage">
+  <div class="row bg-display">
+    <figure class="text-center">
+      <blockquote class="blockquote">  
+        <p class="m-5">Are you interested in seeing the latest advancements in medical technology? 
+          Researchers are exploring an exciting new way to detect optokinetic nystagmus (OKN) using a
+          dvanced AI technology. OKN is a condition where eyes move uncontrollably when objects pass by,
+          which can be crucial for diagnosing vestibular system abnormalities. With the help of cutting-edge 
+          deep learning models, we can quickly and efficiently detect OKN patterns using small video clips provided
+          by the user. <br><br>
+          However, this is different from your ordinary AI technology. We are using a 3D Convolutional Neural 
+          Network to classify the distinct motion pattern created by an eye's observation of a movement. Moreover,
+          that is not all. We also employ the revolutionary Transformers model, which can understand context and
+          meaning by looking at relationships between sequential data. This model is changing the game and replacing
+          old approaches like CNNs and RNNs. <br><br>
+          Thanks to Transformers, we can now quickly process vast amounts of image and text data without needing
+          time-consuming and expensive labelled datasets. The frontiers of recurrent language models and encoder-decoder
+          architectures have been expanded through numerous endeavours. <br><br>
+          Experience the remarkable capabilities of AI. With our system, detecting optokinetic nystagmus has become
+          a seamless process. Embrace the power of AI and revolutionize your medical practice.</p>
+      </blockquote>
+    </figure>
+  </div>
+  <!-- <div class="jumbotron text-center">
+  <h1>SenseCraft</h1>
+  <hr>
+  <p>Decoding Eye Movement Patterns</p>
+</div> -->
+</div>
+{% endblock %}
+
+<!-- scripts -->
+{% block script %} 
+<script>
+
+  const element = document.getElementById("download_csv");
+  element.addEventListener("click", function() {
+    console.log('hello');
+  });
+
+
+  function filesize(elem){
+    document.cookie = `filesize=${elem.files[0].size}`;
+  }
+  const homepage = document.querySelector('.home-content');
+  const oknpage = document.querySelector('.okn-page');
+  const aboutpage = document.querySelector('.aboutpage');
+  const divList = document.querySelector('.uploadVideo');
+  const testResult = document.querySelector('#testResult');
+  const vidDiv = document.querySelector('.videoBg')
+  const vidDiv2 = document.querySelector('.vidplayer')
+  
+  function hideUploadPage(){
+      divList.style.display="none"
+      testResult.style.display="none"
+      vidDiv.style.display="block"
+      vidDiv2.style.display="block"
+  }
+
+  function showOknPage(){
+    oknpage.style.display="block"
+    homepage.style.display="none"
+    aboutpage.style.display="none"
+  }
+
+  function showHomePage(){
+    homepage.style.display="block"
+    oknpage.style.display="none"
+    aboutpage.style.display="none"
+  }
+
+  function showAboutPage(){
+    homepage.style.display="none"
+    oknpage.style.display="none"
+    aboutpage.style.display="block"  
+  }
+
+</script>
+{% endblock %}
