@@ -22,7 +22,7 @@ mpmath==1.3.0
 networkx==2.6.3
 numpy==1.21.6
 packaging==23.2
-Pillow==10.0.1
+Pillow==9.5.0
 proglog==0.1.10
 pycipher==0.5.2
 PyYAML==6.0.1
