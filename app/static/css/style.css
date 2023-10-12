@@ -59,13 +59,9 @@
     color: #ffffff !important;
     line-height: 1.42857143 !important;
     letter-spacing: 2px;
-    font-size: 18px; 
   }
   .try-button{
     position: absolute;
-    width: 20%;
-    left:320px;
-    top:550px;
     line-height: 1.42857143 !important;
     letter-spacing: 2px;
     font: 400 18px Lato, sans-serif;
@@ -184,3 +180,72 @@
     background-color: #ffffff !important;
     text-decoration: none;
   }
+
+/* Responsive */
+  @media only screen and (min-width: 1200px) {
+    /* side bar nav */
+    .top-right-t, .top-right-t-2, .top-right-m, .top-right-m-2, .top-right-b, .top-right-b-2,.home-text-content{
+      right: 2%;
+      font-size: 14px; 
+    }
+    .try-button{
+      width: 15%;
+      left:300px;
+      top:480px;
+    }
+    /* upload page */
+    .how-to-title{
+      top: 110px;
+      right: 220px;
+    }
+    .how-to-content{
+      font-size: 12px;
+      top: 140px;
+      right: 160px;
+    }
+    .upload-title{
+      top: 170px;
+      left: 195px; 
+    }
+    .upload-form{
+      top: 250px;
+      left: 195px; 
+    }
+  }
+  @media only screen and (min-width: 1400px) {
+    /* side bar nav */
+    .top-right-t, .top-right-t-2, .top-right-m, .top-right-m-2, .top-right-b, .top-right-b-2{
+      right: 7%;
+    }
+    .try-button{
+      width: 20%;
+      left:320px;
+      top:550px;
+    }
+    /* upload page */
+    .how-to-title{
+      top: 110px;
+      right: 270px;
+    }
+    .how-to-content{
+      font-size: 14px;
+      top: 140px;
+      right: 185px;
+    }
+    .upload-title{
+      top: 180px;
+      left: 250px; 
+    }
+    .upload-form{
+      top: 250px;
+      left: 250px; 
+    }
+  }
+  @media only screen and (min-width: 1700px) {
+    /* side bar nav */
+    .top-right-t, .top-right-t-2, .top-right-m, .top-right-m-2, .top-right-b, .top-right-b-2,.home-text-content{
+      right: 14%;
+      font-size: 18px;
+    }
+  }
+  

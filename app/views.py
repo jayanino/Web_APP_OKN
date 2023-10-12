@@ -4,7 +4,7 @@ from app import app, scripts
 import os
 
 def allowed_video(filename):
-    if not "." in filename:
+    if not filename:
         return False
     ext = filename.rsplit(".",1)[1]
 
@@ -14,10 +14,12 @@ def allowed_video(filename):
         return False
 
 def allowed_file_size(filesize):
-    if int(filesize) <= app.config["MAX_FILE_SIZE"]:
-        return True
-    else:
-        return False
+    if filesize:
+        if int(filesize) <= app.config["MAX_FILE_SIZE"]:
+            return True
+        else:
+            return False
+    else: return False
 
 @app.route("/get-csv/<filename>")
 def get_file(filename):
