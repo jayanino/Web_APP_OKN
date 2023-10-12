@@ -3,13 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
   <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
@@ -21,28 +18,8 @@
         <img src="{{ url_for('static', filename='img/logov2.png') }}" width="165" height="105" alt="" class="invert">
       </div>
     </nav>
-    <div class="navbar-expand-md">
-      <div class="navbar-dark text-center my-2">
-        <button class="navbar-toggler w-75" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span> <span class="align-middle">Menu</span>
-        </button>
-      </div>
-      <div class="text-center mt-3 collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav mx-auto ">
-          <li class="nav-item">
-            <a onclick="showHomePage()" class="nav-link active" aria-current="page" href="#home">Home</a>
-          </li>
-          <li class="nav-item">
-            <a onclick="showOknPage()" class="nav-link" href="#okn">OKN</a>
-          </li>
-          <li class="nav-item">
-            <a onclick="showAboutPage()" class="nav-link" href="#about">About</a>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <p class="logo-text">Decoding Eye Pattern Movement</p>
   </div>
-  
   <!-- alert message -->
   <div class="container">
     {% with messages = get_flashed_messages() %}
@@ -60,11 +37,39 @@
 
   <main>
     {% block main %}{% endblock %}
+    <div class="sidebtn fixed-top">
+      <div class="top-right-t-2">
+        <img class="home-img-2" src="{{ url_for('static', filename='img/button.png') }}" alt="btn" style="width:80%;">
+        </div> 
+        <div class="top-right-t">
+        <p class="top-right-t-home">HOME</p>
+        <div class="wrapper home-img">    
+            <img onclick="showHomePage()" class="home-img" src="{{ url_for('static', filename='img/button_m.png') }}" alt="btn" style="width:80%;">
+        </div>
+        </div>  
+        <!-- OKN BUTTON -->
+        <div class="top-right-m-2">
+        <img class="okn-img-2" src="{{ url_for('static', filename='img/button.png') }}" alt="btn" style="width:80%;">
+        </div>   
+        <div class="top-right-m">
+        <p class="top-right-t-okn">OKN</p>
+        <img onclick="showOknPage()" class="okn-img" src="{{ url_for('static', filename='img/button_m.png') }}" alt="btn" style="width:80%;">
+        </div> 
+        <!-- ABOUT BUTTON -->
+        <div class="top-right-b-2">
+        <img class="about-img-2" src="{{ url_for('static', filename='img/button.png') }}" alt="btn" style="width:80%;">
+        </div> 
+        <div class="top-right-b">
+        <p class="top-right-t-about">ABOUT</p>
+        <img onclick="showAboutPage()" class="about-img" src="{{ url_for('static', filename='img/button_m.png') }}" alt="btn" style="width:80%;">
+      </div> 
+    </div> 
   </main>
+     
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
   <script src="{{ url_for('static', filename='js/app.js') }}"></script>
   {% block script %}{% endblock %}
 </body>

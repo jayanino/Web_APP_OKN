@@ -1,5 +1,4 @@
-{% extends "template.html" %}
-
+{% extends "template.html"%}
 {% block title %} Home {% endblock %}
 
 {% block main %} 
@@ -8,45 +7,70 @@
   <style>
     .home-content{display: none;}
     .aboutpage{display: none;}
-    .okn-page{display: block;}
+    .okn-page{display: block;} 
   </style>
 {% endif %}
 
 <!-- home page -->
 <div class="container home-content">
-  <div class="wrapper">
-    <div class="row">
-      <div class="col">
-        <img class="home_img" src="{{ url_for('static', filename='img/img_eye.jpg') }}" alt="">
-      </div>
-      <div class="col">  
-        <div class="row">
-          <figure class="text-end">
-            <blockquote class="blockquote">
-              <p>When our eyes observe movement, they create a unique pattern of slow and fast phases 
-                at either end of the stimulus. The tricky part is that this pattern can happen in less than 
-                a second, making it difficult to spot. To accurately predict this pattern, each video frame must  
-                be carefully analyzed. Our application can then determine whether or not a video clip contains an OKN 
-                pattern.</p>
-            </blockquote>
-          </figure>
-        </div>   
-        <form action="#" method="get"></form>
-          <div class="d-grid gap-2 d-md-flex justify-content-md-end pe-5">
-            <a onclick="showOknPage()" class="nav-link" href="#okn">        
-              <button type="button" class="btn btn-secondary btn-lg">Try it out!</button>
-            </a>          
-          </div>           
-      </div>
-    </div>
-  </div>   
+  <img src="{{ url_for('static', filename='img/canvas.png') }}" alt="Snow" style="width:72%;">
+  <div class="center">
+    <figure class="text-end">
+      <blockquote class="blockquote">
+        <p class = home-text-content>Have you ever experienced a sensation of your eyes moving involuntarily back and forth while 
+          looking out of a moving train window? This phenomenon is called Optokinetic Nystagmus (OKN), which occurs when objects pass 
+          by you or when you pass by stationary objects frequently. The OKN pattern is an essential diagnostic tool for medical professionals
+           to identify patients with medical conditions such as stroke, brain injuries, tumours, or other illnesses that can cause nystagmus. 
+           When the organs in the inner ear responsible for balance are not functioning correctly, it can lead to a loss of balance and cause nystagmus.
+           <br><br>
+          To make the testing process more efficient and accurate, medical professionals are looking into using Artificial Intelligence (AI) to detect and 
+          automate the diagnosis of Optokinetic Nystagmus. The OKN pattern is incredibly rapid, happening in less than a second, making it difficult for the 
+          human eye to detect. To accurately predict this pattern, each video frame must be meticulously analyzed. Our application uses AI algorithms to analyze 
+          each frame of the video and determine whether or not it contains an OKN pattern. This new technology enables medical professionals to quickly and accurately 
+          diagnose OKN and other associated medical conditions, leading to better patient outcomes and treatment.</p>
+      </blockquote>
+      
+    </figure>
+    <div onclick="showOknPage()" class="try-btn"><button type="button" class="btn btn-outline-light btn-lg try-button">Try it out</button></div>
+    
+  </div>     
+  {% block sidebar %}
+  {% endblock %}
 </div>
 
 <!-- okn page -->
 <div class="okn-page">
+  <!-- uploading videos -->
+  <div class="uploadVideo container">
+    <img src="{{ url_for('static', filename='img/canvas2.png') }}" alt="Snow" style="width:74%;">
+    <div class="row">
+      <div class="col">
+        <h1 class="upload-title">Upload Video</h1>
+        <form class="upload-form" action="/" method="POST" enctype="multipart/form-data">
+          <div class="form-group">
+            <div class="custom-file">
+              <input oninput="filesize(this);" type="file" class="form-control" name="video" id="video">
+            </div>
+          </div>
+          <button onclick="hideUploadPage()" show="submit" id="okn-btn" class="btn btn-outline-light">Run OKN Detection</button>
+        </form>
+      </div>
+      <div class="col">
+          <h1 class="how-to-title">How to use?</h1>
+          <p class="how-to-content">To begin the video processing, you'll need to upload a video in either MP4 or MOV format. 
+            Keep in mind that the file size should not exceed 260mb. Once uploaded, click on the "execute" 
+            button to initiate the processing of the video. Please note that the processing time may vary depending on 
+            the size of the video. After the video has been processed, you'll receive the result of the processing. 
+            You can also download a CSV file of the result for future reference.
+          </p>
+      </div>
+    </div>
+  </div>
+
   <!-- okn test result -->
-  <div class="container" id="testResult">
-    <table class="table table-sm table-dark okn_result">
+  <div class="container pb-5 test-result">
+    <h1 class="text-center pt-5 test-title">Test Results</h1>
+    <table class="table table-sm table-dark okn-table">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -71,32 +95,23 @@
         {% endfor %}  
       </tbody>     
     </table>
+
+    <!-- checks if test result has content if not don't display table -->
     {% if filename=='' %}
-      <style>#download_csv{display: none;}</style>
+      <style>
+        .test-result{display: none;}
+        .uploadVideo{display: block;}
+      </style>
     {% elif filename!='' %}
-      <style>#download_csv{display: block;}</style>
-    {% endif %}    
-    <a href="/get-csv/{{filename}}" target="blank"><button id="download_csv" class="btn btn-primary">Download csv</button></a>
-    
+      <style>
+        .test-result{display: block;}
+        .uploadVideo{display: none;}
+      </style>
+    {% endif %}   
+    <a href="/get-csv/{{filename}}" target="blank"><button id="download_csv" class="btn btn-outline-light">Download csv</button></a>
+    <button onclick="showUploadVideo()" show="submit" id="go-back-upload-page" class="btn btn-outline-light ms-5">Go Back</button>
   </div>
-  <!-- uploading videos -->
-  <div class="uploadVideo container">
-    <div class="row">
-      <div class="col">
-        <h1>Upload Video</h1>
-        <hr>
-        <form action="/" method="POST" enctype="multipart/form-data">
-          <div class="form-group">
-            <div class="custom-file">
-              <input oninput="filesize(this);" type="file" class="form-control" name="video" id="video">
-              <label class="custom-file-label" for="video">Select video...</label>
-            </div>
-          </div>
-          <button onclick="hideUploadPage()" show="submit" id="oknBtn" class="btn btn-primary">Run OKN Detection</button>
-        </form>
-      </div>
-    </div>
-  </div>
+  
   <!-- loading screen -->  
   <div class="container videoBg">
     <div class="row">
@@ -105,52 +120,96 @@
       </video>
     </div>
     <div class="row">
-      <h5 class="text-center loadingmsg">The video is being processed <br>
+      <h5 class="text-center loading-msg">The video is being processed <br>
       this may take awhile</h5></div>
   </div>
 </div>
 
 <!-- about page -->
-<div class="container aboutpage">
-  <div class="row bg-display">
-    <figure class="text-center">
-      <blockquote class="blockquote">  
-        <p class="m-5">Are you interested in seeing the latest advancements in medical technology? 
+<div class="container aboutpage pt-5">
+  <div class="row d-flex justify-content-center">    
+    <figure class="text-center" style="width:65%;" >     
+      <blockquote class="blockquote about-content"> 
+        <h2>What is SenseCraft?</h2>
+        <p>SenseCraft is an artificial intelligence-based web application developed to detect Optokinetic nystagmus (OKN)
+          reliably. It is a sophisticated tool that can be used in various settings, including academic and business
+          environments, to diagnose this condition accurately. With its advanced algorithms and powerful features, 
+          SenseCraft is a valuable asset for medical professionals seeking to improve their diagnostic capabilities 
+          and provide better patient care. Its user-friendly interface and intuitive design make it easy to use, even 
+          for those unfamiliar with the technology. Overall, SenseCraft is a cutting-edge solution poised to revolutionize
+          how OKN is diagnosed and treated. <br><br>
+          Are you interested in seeing the latest advancements in medical technology? 
           Researchers are exploring an exciting new way to detect optokinetic nystagmus (OKN) using a
           dvanced AI technology. OKN is a condition where eyes move uncontrollably when objects pass by,
           which can be crucial for diagnosing vestibular system abnormalities. With the help of cutting-edge 
           deep learning models, we can quickly and efficiently detect OKN patterns using small video clips provided
           by the user. <br><br>
-          However, this is different from your ordinary AI technology. We are using a 3D Convolutional Neural 
-          Network to classify the distinct motion pattern created by an eye's observation of a movement. Moreover,
-          that is not all. We also employ the revolutionary Transformers model, which can understand context and
-          meaning by looking at relationships between sequential data. This model is changing the game and replacing
-          old approaches like CNNs and RNNs. <br><br>
+          However, this is different from your ordinary AI technology. We are using a Neural Network called Transformers 
+          to classify the distinct motion pattern created by an eye's observation of a movement. Moreover, that is not all.
+          We also employ the revolutionary VideoMAE model, which can understand context and meaning by looking at relationships
+          between sequential data. This model is changing the game and replacing old approaches like CNNs and RNNs.<br><br>
           Thanks to Transformers, we can now quickly process vast amounts of image and text data without needing
           time-consuming and expensive labelled datasets. The frontiers of recurrent language models and encoder-decoder
           architectures have been expanded through numerous endeavours. <br><br>
           Experience the remarkable capabilities of AI. With our system, detecting optokinetic nystagmus has become
-          a seamless process. Embrace the power of AI and revolutionize your medical practice.</p>
-      </blockquote>
-    </figure>
+          a seamless process. Embrace the power of AI and revolutionize your medical practice.
+        </p>
+        <h2 class="pt-5">What are Transformers?</h2>
+        <p>
+          Have you ever wondered how machines can translate text, write poems, or generate code? The answer lies in a type of 
+          artificial intelligence called neural networks. These networks are excellent at analyzing complex data types like images, 
+          video, audio, and text.<br><br>
+
+          One type of neural network is called a transformer. It is a technology developed by Google in 2017 and is the basis for many of
+          the most advanced AI models today. Transformers can be used for all sorts of things, from helping medical research to creating ads.
+          Before transformers, the model used for analyzing text was a recurrent neural network (RNN). RNNs were good at translating words one 
+          by one, but they struggled with longer text passages. They also had trouble with word order, which is important for translating languages.<br><br>
+
+          Transformers solved these problems by using a different approach. Instead of looking at words one by one, transformers use something called
+          "positional encodings." This means they assign a number to each word, which helps the machine understand the order of the words in a sentence. 
+          Another key part of transformers is "attention." This network structure allows the machine to look at every word in a sentence when deciding how 
+          to translate a word in the output sentence. <br><br>
+
+          Finally, transformers use "self-attention" to help the machine understand a word in the context of the words around it. This helps it recognize things 
+          like parts of speech and word tense. Overall, transformers have revolutionized the way machines can analyze text. They are faster and more accurate than 
+          the models that came before them, and they are helping researchers make breakthroughs in fields like medicine and technology.
+        </p>
+        <h2 class="pt-5">What is VideoMAE?</h2>
+        <p>
+          I used a model called VideoMAE to classify videos. It is a computer program that helps machines learn to recognize different types of videos. 
+          The VideoMAE model is good at doing this and was created by a team of researchers named Zhan Tong, Yibing Song, Jue Wang, and Limin Wang.
+          They used a technique called "masked auto encoders" to train the model, which helped it learn more efficiently and accurately.
+          The VideoMAE model has been tested on many different types of videos and has performed better than others in several tests.
+        </p>
+        <p>The abstract from the paper is the following. <br>
+          "Pre-training video transformers on extra large-scale datasets is generally required to achieve premier performance on relatively small datasets. 
+          In this paper, we show that video masked autoencoders (VideoMAE) are data-efficient learners for self-supervised video pre-training (SSVP). 
+          We are inspired by the recent ImageMAE and propose customized video tube masking and reconstruction. These simple designs turn out to be effective for overcoming 
+          information leakage caused by the temporal correlation during video reconstruction. We obtain three important findings on SSVP: (1) An extremely high proportion of 
+          masking ratio (i.e., 90% to 95%) still yields favorable performance of VideoMAE. The temporally redundant video content enables higher masking ratio than that of 
+          images. (2) VideoMAE achieves impressive results on very small datasets (i.e., around 3k-4k videos) without using any extra data. This is partially ascribed to the 
+          challenging task of video reconstruction to enforce high-level structure learning. (3) VideoMAE shows that data quality is more important than data quantity for SSVP. 
+          Domain shift between pre-training and target datasets are important issues in SSVP. Notably, our VideoMAE with the vanilla ViT backbone can achieve 83.9% on 
+          Kinects-400, 75.3% on Something-Something V2, 90.8% on UCF101, and 61.1% on HMDB51 without using any extra data" <br>.</p>
+        <figcaption class="blockquote-footer"> 
+          We kindly invite you to peruse the associated paper for further details on the subject matter. <cite title="Source Title">https://arxiv.org/abs/2203.12602</cite>
+        </figcaption>
+        <p class="pb-5">
+          The Optokinetic Nystagmus (OKN) model is readily accessible in my Hugging Face repository.  
+          <a href="https://huggingface.co/jayanino/videomae-base-OKN-Test">HuggingFace Model for OKN</a>
+        </p>
+      </blockquote>    
+    </figure>   
   </div>
-  <!-- <div class="jumbotron text-center">
-  <h1>SenseCraft</h1>
-  <hr>
-  <p>Decoding Eye Movement Patterns</p>
-</div> -->
 </div>
 {% endblock %}
 
 <!-- scripts -->
 {% block script %} 
 <script>
-
   const element = document.getElementById("download_csv");
   element.addEventListener("click", function() {
-    console.log('hello');
   });
-
 
   function filesize(elem){
     document.cookie = `filesize=${elem.files[0].size}`;
@@ -158,16 +217,15 @@
   const homepage = document.querySelector('.home-content');
   const oknpage = document.querySelector('.okn-page');
   const aboutpage = document.querySelector('.aboutpage');
-  const divList = document.querySelector('.uploadVideo');
-  const testResult = document.querySelector('#testResult');
+  const uploadVideo = document.querySelector('.uploadVideo');
   const vidDiv = document.querySelector('.videoBg')
   const vidDiv2 = document.querySelector('.vidplayer')
   
   function hideUploadPage(){
-      divList.style.display="none"
-      testResult.style.display="none"
-      vidDiv.style.display="block"
-      vidDiv2.style.display="block"
+    uploadVideo.style.display="none"
+    // testResult.style.display="none"
+    vidDiv.style.display="block"
+    vidDiv2.style.display="block"
   }
 
   function showOknPage(){
@@ -186,6 +244,9 @@
     homepage.style.display="none"
     oknpage.style.display="none"
     aboutpage.style.display="block"  
+  }
+  function showUploadVideo(){
+    uploadVideo.style.display="block" 
   }
 
 </script>

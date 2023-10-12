@@ -1,61 +1,126 @@
-  .jumbotron {
-    padding-top: 5%;
-    background-color: transparent;
-    color: #ffffff;
+  /* Logo */
+  .logo-text{
+    margin-top: 10px;
+    line-height: 1.42857143 !important;
+    letter-spacing: 2px;
+    font: 400 15px Lato, sans-serif; 
   }
-
-  .jumbotron hr{  
-    width:330px;
-    border-color:#ffffff;
+  .sidebtn{
+    color: #ffffff !important;
+    letter-spacing: 2px;
+    font-size: 13px;
   }
-
-  .jumbotron p{  
-    line-height: 0;
+/* side bar nav */
+  .top-right-t, .top-right-t-2{
+    position: absolute;
+    top: 290px;
+    right: 14%;
   }
-
-  .jumbotron h1{  
-    line-height: 0.4;
-    padding-top: 20px;
+  .top-right-m, .top-right-m-2 {
+    position: absolute;
+    top: 360px;
+    right: 14%;
   }
-
+  .top-right-b, .top-right-b-2  {
+    position: absolute;
+    top: 430px;
+    right: 14%;
+  }
+  .top-right-t-home, .top-right-t-okn, .top-right-t-about{
+    position: absolute;
+    top: -35px;
+    right: 44px;
+  }
+  .home-img:hover{opacity: 0;} 
+  .okn-img:hover{opacity: 0;} 
+  .about-img:hover{opacity: 0;} 
+  
+/* Body */
   body {
     font: 400 15px Lato, sans-serif;  
-    color: #080808;  
-    background-image: url("../img/nong-unsplash2.jpg");
+    color: #ffffff;  
+    background-image: url("../img/blue.png");
     background-size:cover;
   }
 
   /* Home page */
   .home-content, p{
-    opacity: 0.8;
-    margin-top: 80px;
-    background-color: #000000;
+    position: relative;
+    text-align: center;
+    margin-top: 50px;
+  }
+  .home-text-content{
+    width: 62%;
+    text-align:start;
+    position: absolute;
+    top: 35%;
+    left: 51%;
+    transform: translate(-50%, -50%);
     color: #ffffff !important;
-    padding: 45px;
-    border-radius: 60px;
     line-height: 1.42857143 !important;
     letter-spacing: 2px;
-    font-size: 18px;
+    font-size: 18px; 
   }
-
-  .wrapper, p, .home_img{
-    opacity: 1;
+  .try-button{
+    position: absolute;
+    width: 20%;
+    left:320px;
+    top:550px;
+    line-height: 1.42857143 !important;
+    letter-spacing: 2px;
+    font: 400 18px Lato, sans-serif;
   }
 
   /* OKN page */
+  .test-result{
+    width: 55%;
+    color: white;
+  }
   .okn-page{
-    padding-top: 100px;
+    padding-top: 20px;
     display: none;
   }
+  .upload-title{
+    line-height: 1.42857143 !important;
+    letter-spacing: 2px;
+    position: absolute;
+    top: 180px;
+    left: 250px; 
+  }
+  .how-to-title{
+    text-align: left;
+    line-height: 1.42857143 !important;
+    letter-spacing: 2px;
+    position: absolute;
+    top: 110px;
+    right: 270px;
+  }
+  .how-to-content{
+    line-height: 1.42857143 !important;
+    letter-spacing: 2px;
+    text-align: left;
+    width: 30%;
+    position: absolute;
+    top: 140px;
+    right: 185px;
+  }
+  .upload-form{
+    position: absolute;
+    top: 250px;
+    left: 250px; 
+  }
+  #okn-btn{
+    margin-top: 20px;
+    margin-left: 170px;
+  }
   .uploadVideo{
+    position: relative;
+    text-align: center;
     padding-top: 50px;
     color: #ffffff;
   }
-  .okn_result{
-    color: white;
-    background-color: rgb(23, 23, 23);
-  }
-   .loadingmsg{
+
+  .loading-msg{
     padding-top: 260px;
     font: 400 15px Lato, sans-serif; 
     color: white;
@@ -63,8 +128,9 @@
     line-height: 1.42857143 !important;
     letter-spacing: 2px;
   } 
-  .videoBg,.vidplayer{  
-    display: none;   
+
+  .videoBg, .vidplayer{  
+    /* display: none;    */
     opacity: 0.9;
     border-radius: 60px;
     background: #000000;
@@ -91,10 +157,11 @@
     padding-top: 30px;
     display: none;
   }
-  .bg-display{
-    opacity: 0.8;
+  .about-content{
+    letter-spacing: 2px;
+    line-height: 1.42857143 !important;
+    font: 400 16px Lato, sans-serif;
   }
-
 /* NAVBAR */
   #mainNavigation li a, .navbar .navbar-brand {
     color: #ffffff !important;
