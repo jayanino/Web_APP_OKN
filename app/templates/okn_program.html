@@ -40,6 +40,19 @@
 
 <!-- okn page -->
 <div class="okn-page">
+  <!-- loading screen -->  
+  <div class="container videoBg">
+    <div class="row">
+      <img class="loading-icon-ripple" src="{{ url_for('static', filename='img/ripple_icon.gif') }}" alt="Snow" style="width:75%;">
+      <img class="loading-icon-gear" src="{{ url_for('static', filename='img/gear_icon.gif') }}" alt="Snow" style="width:70%;">
+    </div>
+    <div class="row">
+      <h5 class="text-center loading-msg">Hello there! Your video is currently being processed. 
+        Our system is analyzing each frame of the video to ensure that it is of the highest quality and runs smoothly. <br><br>
+        This process may take some time, depending on the length and size of the video. Hang tight and it'll be ready for you soon! 
+        this may take awhile</h5>
+    </div>
+  </div>
   <!-- uploading videos -->
   <div class="uploadVideo container">
     <img src="{{ url_for('static', filename='img/canvas2.png') }}" alt="Snow" style="width:74%;">
@@ -109,19 +122,7 @@
       </style>
     {% endif %}   
     <a href="/get-csv/{{filename}}" target="blank"><button id="download_csv" class="btn btn-outline-light">Download csv</button></a>
-    <button onclick="showUploadVideo()" show="submit" id="go-back-upload-page" class="btn btn-outline-light ms-5">Go Back</button>
-  </div>
-  
-  <!-- loading screen -->  
-  <div class="container videoBg">
-    <div class="row">
-      <video class="vidplayer" width="520" height="440" autoplay loop muted>
-        <source src="{{ url_for('static', filename='img/loading_screen.mp4') }}" type="video/mp4"></source>    
-      </video>
-    </div>
-    <div class="row">
-      <h5 class="text-center loading-msg">The video is being processed <br>
-      this may take awhile</h5></div>
+    <button onclick="showUploadVideo()" show="submit" id="go-back-upload-page" class="btn btn-outline-light ms-5">Upload New Video</button>
   </div>
 </div>
 
@@ -196,7 +197,7 @@
         </figcaption>
         <p class="pb-5">
           The Optokinetic Nystagmus (OKN) model is readily accessible in my Hugging Face repository.  
-          <a href="https://huggingface.co/jayanino/videomae-base-OKN-Test">HuggingFace Model for OKN</a>
+          <a target="_blank" href="https://huggingface.co/jayanino/videomae-base-OKN-Test">HuggingFace Model for OKN</a>
         </p>
       </blockquote>    
     </figure>   
@@ -220,12 +221,12 @@
   const uploadVideo = document.querySelector('.uploadVideo');
   const vidDiv = document.querySelector('.videoBg')
   const vidDiv2 = document.querySelector('.vidplayer')
+  const result = document.querySelector('.test-result')
   
   function hideUploadPage(){
     uploadVideo.style.display="none"
-    // testResult.style.display="none"
+    result.style.display="none"
     vidDiv.style.display="block"
-    vidDiv2.style.display="block"
   }
 
   function showOknPage(){

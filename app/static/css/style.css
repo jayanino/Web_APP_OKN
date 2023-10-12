@@ -128,16 +128,25 @@
     line-height: 1.42857143 !important;
     letter-spacing: 2px;
   } 
-
+  .videoBg{
+    display: none;
+  }
+  .loading-icon-ripple{
+    position: absolute;
+    bottom: 120px;
+    left: 43px;
+  }
+  .loading-icon-gear{
+    position: absolute;
+    left: 15%;
+  }
   .videoBg, .vidplayer{  
-    /* display: none;    */
     opacity: 0.9;
     border-radius: 60px;
-    background: #000000;
     position: absolute;
     height: 50%; 
     left: 50%;
-    top: 25%;
+    top: 18%;
     -ms-transform: translateX(-50%);
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
