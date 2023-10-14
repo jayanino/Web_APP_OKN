@@ -182,70 +182,130 @@
   }
 
 /* Responsive */
-  @media only screen and (min-width: 1200px) {
+@media only screen and (max-width: 990px) and (min-width: 100px){
+  /* side bar nav */
+  .top-right-t, .top-right-t-2, .top-right-m, .top-right-m-2, .top-right-b, .top-right-b-2{
+    right: 1%;
+  }
+  .home-text-content{
+    font-size: 8px;
+    top: 100px;
+  }
+  .try-button{
+    font-size: 8px;
+    width: 12%;
+    left: 210px;
+    top: 280px;
+  }
+  /* upload page */
+  .how-to-title{
+    font-size: 18px;
+    top: 90px;
+    right: 160px;
+  }
+  .how-to-content{
+    font-size: 8px;
+    top: 85px;
+    right: 105px;
+  }
+  .upload-title{
+    font-size: 22px;
+    top: 120px;
+    left: 130px; 
+  }
+  .upload-form{
+    width: 30%;
+    top: 165px;
+    left: 130px; 
+  }
+  #okn-btn{
+    font-size: 8px;
+    margin-left: 120px;
+  }
+}
+  @media only screen and (max-width: 1200px) and (min-width: 991px) {
     /* side bar nav */
-    .top-right-t, .top-right-t-2, .top-right-m, .top-right-m-2, .top-right-b, .top-right-b-2,.home-text-content{
-      right: 2%;
-      font-size: 14px; 
+    .top-right-t, .top-right-t-2, .top-right-m, .top-right-m-2, .top-right-b, .top-right-b-2{
+      right: -12px;
+    }
+    .home-text-content{
+      font-size: 12px; 
+      top: 150px;
     }
     .try-button{
       width: 15%;
-      left:300px;
+      left: 260px;
+      top: 390px;
+    }
+    /* upload page */
+    .how-to-title{
+      top: 80px;
+      right: 180px;
+    }
+    .how-to-content{
+      font-size: 12px;
+      top: 100px;
+      right: 140px;
+    }
+    .upload-title{
+      top: 140px;
+      left: 155px; 
+    }
+    .upload-form{
+      top: 200px;
+      left: 155px; 
+    }
+  } 
+  @media only screen and (max-width: 1399px) and (min-width: 1200px) {
+    /* side bar nav */
+    .top-right-t, .top-right-t-2, .top-right-m, .top-right-m-2, .top-right-b, .top-right-b-2{
+      right: 1%;
+    }
+    .home-text-content{
+      font-size: 15px; 
+      top: 190px;
+    }
+    .try-button{
+      width: 20%;
+      left: 270px;
       top:480px;
     }
     /* upload page */
     .how-to-title{
-      top: 110px;
-      right: 220px;
+      top: 90px;
+      right: 230px;
     }
     .how-to-content{
       font-size: 12px;
-      top: 140px;
+      top: 130px;
       right: 160px;
     }
     .upload-title{
-      top: 170px;
-      left: 195px; 
+      top: 160px;
+      left: 200px; 
     }
     .upload-form{
-      top: 250px;
-      left: 195px; 
-    }
-  }
-  @media only screen and (min-width: 1400px) {
-    /* side bar nav */
-    .top-right-t, .top-right-t-2, .top-right-m, .top-right-m-2, .top-right-b, .top-right-b-2{
-      right: 7%;
-    }
-    .try-button{
-      width: 20%;
-      left:320px;
-      top:550px;
-    }
-    /* upload page */
-    .how-to-title{
-      top: 110px;
-      right: 270px;
-    }
-    .how-to-content{
-      font-size: 14px;
-      top: 140px;
-      right: 185px;
-    }
-    .upload-title{
-      top: 180px;
-      left: 250px; 
-    }
-    .upload-form{
-      top: 250px;
-      left: 250px; 
-    }
-  }
-  @media only screen and (min-width: 1700px) {
-    /* side bar nav */
-    .top-right-t, .top-right-t-2, .top-right-m, .top-right-m-2, .top-right-b, .top-right-b-2,.home-text-content{
-      right: 14%;
-      font-size: 18px;
+      top: 230px;
+      left: 200px; 
     }
   }
   
+  @media only screen and (min-width: 1400px) {
+    /* side bar nav */
+    .top-right-t, .top-right-t-2, .top-right-m, .top-right-m-2, .top-right-b, .top-right-b-2,.home-text-content{
+      right: 6%;
+      font-size: 18px;
+    }
+    .try-button{
+      width: 20%;
+      left: 320px;
+      top: 550px;
+    }
+  } 
+
+  @media only screen and (min-width: 1600px) {
+    /* side bar nav */
+    .top-right-t, .top-right-t-2, .top-right-m, .top-right-m-2, .top-right-b, .top-right-b-2,.home-text-content{
+      right: 14%;
+    }
+  } 
