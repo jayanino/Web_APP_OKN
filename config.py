@@ -9,7 +9,7 @@ class Config(object):
     SESSION_COOKIE_SECURE = True
 
 class ProductionConfig(Config):
-    MAX_FILE_SIZE = 260000000
+    MAX_FILE_SIZE = 220000000
 
 class DevelopmentConfig(Config):
     DEBUG = True

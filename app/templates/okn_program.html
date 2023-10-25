@@ -54,7 +54,7 @@
     </div>
   </div>
   <!-- uploading videos -->
-  <div class="uploadVideo container">
+  <div class="uploadVideo container" id="uploadDiv">
     <img src="{{ url_for('static', filename='img/canvas2.png') }}" alt="Snow" style="width:74%;">
     <div class="row">
       <div class="col">
@@ -124,7 +124,9 @@
       </style>
     {% endif %}   
     <a href="/get-csv/{{filename}}" target="blank"><button id="download_csv" class="btn btn-outline-light">Download csv</button></a>
-    <button onclick="showUploadVideo()" show="submit" id="go-back-upload-page" class="btn btn-outline-light ms-5">Upload New Video</button>
+    <a href="#uploadDiv">
+      <button onclick="showUploadVideo()" show="submit" id="go-back-upload-page" class="btn btn-outline-light ms-5">Upload New Video</button>
+    </a>
   </div>
 </div>
 
