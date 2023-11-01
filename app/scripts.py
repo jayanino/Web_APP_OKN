@@ -8,7 +8,7 @@ video_cls = pipeline(model="jayanino/videomae-base-OKN-Test-v15")
 def load_video(path,file_path):
     test_results = []
     clip = VideoFileClip(file_path)
-    filename = str(clip.filename).split("/")[5] 
+    filename = str(clip.filename).split("/")[3] 
     duration = clip.duration
     start = 0 # start at 0 seconds
     end   = 2 # plays for 0 seconds and ends at 2 seconds
