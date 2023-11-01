@@ -9,7 +9,7 @@ def load_video(path,file_path):
     results = []
     test_results = []
     clip = VideoFileClip(file_path)
-    filename = str(clip.filename).split("/")[5] 
+    filename = str(clip.filename).split("/")[3] 
     duration = clip.duration
 
     results.append(video_cls(file_path))
