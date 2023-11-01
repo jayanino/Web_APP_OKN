@@ -26,7 +26,6 @@ def get_file(filename):
     path = "../"+app.config['FILEPATH']+"/csv"
     try:
         return send_from_directory(path,filename, as_attachment=True)
-        #return send_from_directory(path,filename, as_attachment=True)
         
     except FileNotFoundError:
         abort(404)
@@ -62,7 +61,7 @@ def home():
                 os.mkdir(path)
                 video.save(os.path.join(path, filename))
                 filepath = (f"{path}/{filename}")
-
+          
                 results = scripts.load_video(path,filepath)
                 scripts.generate_csv(results,filename)   
                 filename = filename+".csv"

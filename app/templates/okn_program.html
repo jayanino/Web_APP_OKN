@@ -99,15 +99,16 @@
       </thead>
       <tbody>
         {% for result in results %}
-          <tr>
-            <th scope="row">{{loop.index}}</th>
-            <td>{{result.get('Video_Name')}}</td>
-            <td>{{result.get('score')}}</td>
-            <td>{{result.get('label')}}</td>
-            <td>{{result.get('Start time')}}</td>  
-            <td>{{result.get('End time')}}</td>
-            <td>{{result.get('Result')}}</td>           
-        {% endfor %}  
+        <tr>
+          <th scope="row">{{loop.index}}</th>
+          <td>{{result.get('Video_Name')}}</td>
+          <td>{{result.get('score')}}</td>
+          <td>{{result.get('label')}}</td>
+          <td>{{result.get('Start time')}}</td>  
+          <td>{{result.get('End time')}}</td>
+          <td>{{result.get('Result')}}</td>  
+        </tr>          
+        {% endfor %}
       </tbody>     
     </table>
 
