@@ -3,7 +3,7 @@ from transformers import pipeline
 import shutil, csv, os
 from app import app
 
-video_cls = pipeline(model="jayanino/videomae-base-OKN-Test-v15")
+video_cls = pipeline(model="jayanino/videomae-base-OKN-Test-v27", device=0)
 
 def load_video(path,file_path):
     test_results = []
