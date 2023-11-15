@@ -3,12 +3,12 @@ from transformers import pipeline
 import shutil, csv, os
 from app import app
 
-video_cls = pipeline(model="jayanino/videomae-base-OKN-Test-v27", device=0)
+video_cls = pipeline(model="jayanino/videomae-base-OKN-Test-v27")
 
 def load_video(path,file_path):
     test_results = []
     clip = VideoFileClip(file_path)
-    filename = str(clip.filename).split("/")[3] 
+    filename = str(clip.filename).split("/")[5] 
     duration = clip.duration
     start = 0 # start at 0 seconds
     end   = 2 # plays for 0 seconds and ends at 2 seconds

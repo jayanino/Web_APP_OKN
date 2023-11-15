@@ -1,0 +1,15 @@
+score,label,Start time,End time,Video_Name,Result
+0.894871711730957,neutral_gaze,0,2,test_data.mp4,0
+0.7302954792976379,neutral_gaze,1,3,test_data.mp4,0
+0.8953872919082642,neutral_gaze,2,4,test_data.mp4,0
+0.7028762102127075,neutral_gaze,3,5,test_data.mp4,0
+0.7512503862380981,neutral_gaze,4,6,test_data.mp4,0
+0.8899677991867065,neutral_gaze,5,7,test_data.mp4,0
+0.6807109117507935,neutral_gaze,6,8,test_data.mp4,0
+0.9110771417617798,neutral_gaze,7,9,test_data.mp4,0
+0.8930807113647461,okn,8,10,test_data.mp4,1
+0.9202349781990051,okn,9,11,test_data.mp4,1
+0.9547278881072998,okn,10,12,test_data.mp4,1
+0.9370225071907043,okn,11,13,test_data.mp4,1
+0.9361407160758972,okn,12,14,test_data.mp4,1
+0.9643620848655701,okn,13,15,test_data.mp4,1
