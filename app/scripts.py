@@ -2,9 +2,9 @@ from moviepy.editor import VideoFileClip
 from transformers import pipeline
 import shutil, csv, os
 from app import app
-
+#gets the model from huggingface repo
 video_cls = pipeline(model="jayanino/videomae-base-OKN-Test-v27")
-
+#loads the video 
 def load_video(path,file_path):
     test_results = []
     clip = VideoFileClip(file_path)
@@ -14,7 +14,7 @@ def load_video(path,file_path):
     end   = 2 # plays for 0 seconds and ends at 2 seconds
     test_results = create_vid_clip(clip,duration,start,end,filename,path,)
     return test_results
-
+#creates a 2 second clip
 def create_vid_clip(clip,duration,start,end,filename,path):
     results = []
     vid_paths=[]
@@ -35,7 +35,7 @@ def create_vid_clip(clip,duration,start,end,filename,path):
     clip.close()
     results = run_okn_detector(num_of_vid, vid_paths,video_details,path)
     return results
-
+#runs the okn detector and checks the created 2 second videos
 def run_okn_detector(num_of_vid, vid_paths,video_details,path):
     i=0
     test_results = []
@@ -45,7 +45,7 @@ def run_okn_detector(num_of_vid, vid_paths,video_details,path):
         i+=1
     results = show_test_results(test_results,video_details,path)
     return results
-
+#Saves the result of the detection
 def show_test_results(test_results,video_details,path):
     results = []
     i=0
@@ -59,7 +59,7 @@ def show_test_results(test_results,video_details,path):
         i+=1
     remove_file(path)
     return results
-
+#removes the files after the detection
 def remove_file(filepath):
     try:
         shutil.rmtree(filepath)
@@ -78,7 +78,7 @@ def remove_file(filepath):
     path = os.path.join(app.config['FILEPATH'], "csv")   
     os.mkdir(path) 
 
-
+#Generates a csv file for download
 def generate_csv(test_results,filename):
     path = app.config['FILEPATH']+"/csv/"
     fieldnames = ["score", "label", "Start time", "End time", "Video_Name", "Result"]

@@ -2,7 +2,7 @@ from flask import render_template, request, redirect, flash,url_for, send_from_d
 from werkzeug.utils import secure_filename
 from app import app, scripts
 import os
-
+#checks the extension of file
 def allowed_video(filename):
     if not filename:
         return False
@@ -12,7 +12,7 @@ def allowed_video(filename):
         return True
     else:
         return False
-
+#checks the file size 
 def allowed_file_size(filesize):
     if filesize:
         if int(filesize) <= app.config["MAX_FILE_SIZE"]:
@@ -20,7 +20,7 @@ def allowed_file_size(filesize):
         else:
             return False
     else: return False
-
+#download csv file
 @app.route("/get-csv/<filename>")
 def get_file(filename):
     path = "../"+app.config['FILEPATH']+"/csv"
